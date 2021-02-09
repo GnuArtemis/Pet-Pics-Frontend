@@ -1,0 +1,45 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    (click)="addClick()">
+    Add Animal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closeClick()"></button>
+            </div>
+            <div class="modal-body">
+                <app-add-edit [ani]="ani" *ngIf="ActivateAddEditComp"></app-add-edit>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <th>Photo</th>
+        <th>Species</th>
+        <th>Options</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of AnimalList">
+            <td style="max-width: 80px;"><img src="{{PhotoFilePath + dataItem.PhotoFileName}}" alt="..." class="img-thumbnail img-fluid"></td>
+            <td>{{dataItem.Species}}</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="editClick(dataItem)">
+                    Edit
+                </button>
+                <button type="button" class="btn btn-light mr-1" (click)="deleteClick(dataItem)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
